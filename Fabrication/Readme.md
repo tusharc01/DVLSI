@@ -79,10 +79,10 @@ The threshold voltage ($V_t$) is a critical parameter that determines when a MOS
     *   When the **depletion regions merge across the channel, a direct path for majority carriers is formed from the source to the drain**, bypassing the gate control. This is known as **punch-through**.
     *   The net effect of punch-through is a **significant increase in the subthreshold leakage current** and a loss of gate control, which can lead to device failure. Punch-through sets an upper bound on the drain-source voltage.
 
-*   **Body Effect:**
+*   **Body Effect:**   **
     *   The threshold voltage is also influenced by the **voltage difference between the source and the body (substrate) ($V_{SB}$)**. This is known as the **body effect** or substrate-bias effect.
     *   Increasing $V_{SB}$ causes the channel to be further depleted of charge carriers, which **increases the threshold voltage**. While not solely caused by channel shortening, it is a significant factor in threshold voltage modulation in devices, including short-channel ones, and is often exploited in techniques like VTCMOS to reduce leakage.
 
-*   **Narrow-Width Effect:**
+*   **Narrow-Width Effect:**   **
     *   The threshold voltage can also be affected by the **width of the gate**, particularly when it becomes very narrow.
     *   This effect arises because the depletion region of the channel extends somewhat under the isolating field-oxide at the edges of the transistor. The gate voltage must support this **extra depletion charge** to establish a conducting channel, which **results in an increase of the threshold voltage** for small values of width (W). This effect becomes significant for very small widths.
