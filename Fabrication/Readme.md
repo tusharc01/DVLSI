@@ -197,7 +197,6 @@ Think of trying to turn off a water hose by squeezing it. If you can only press 
 ## Terminology nuances
 
 While the term "FinFET" originated from the double-gate structure developed at UC Berkeley, in current industry usage, it often serves as a more general term for any fin-based, multi-gate transistor architecture, regardless of the exact number of gates.
-
 Intel's "Tri-Gate" technology, for instance, is considered a type of FinFET by many in the industry and technical literature, even if Intel initially used a different term. A tri-gate structure, as its name suggests, utilizes a gate wrapped around three sides of the fin.
 
 In essence FinFET technology provides better control over the transistor channel, making it possible to build smaller, more power-efficient, and higher-performance microchips that power modern electronics like computers, smartphones, and AI chips.
