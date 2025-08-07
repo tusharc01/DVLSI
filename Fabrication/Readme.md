@@ -77,11 +77,19 @@ The threshold voltage ($V_t$) is a critical parameter that determines when a MOS
     *   It happens when the **depletion regions of the drain and the source interact with each other near the channel surface, effectively lowering the potential barrier** at the source, making it easier for carriers to flow into the channel.
     *   The consequence of DIBL is an **increase in subthreshold leakage current** because a lower effective threshold voltage allows more current to flow even when the transistor is nominally OFF.
 
+<p align="center">
+  <img src="https://github.com/tusharc01/DVLSI/blob/main/Fabrication/DIBL.png" alt="DIBL" width="400"/>
+</p>
+
 *   **Channel Punch Through:**
     *   Due to the close proximity of the drain and source in short-channel devices, their respective **depletion regions can extend significantly into the channel**.
     *   If the doping is kept constant and the channel length is reduced, the separation between these depletion region boundaries decreases. Increased reverse bias across the drain junction (higher $V_{DS}$) further reduces this separation.
     *   When the **depletion regions merge across the channel, a direct path for majority carriers is formed from the source to the drain**, bypassing the gate control. This is known as **punch-through**.
     *   The net effect of punch-through is a **significant increase in the subthreshold leakage current** and a loss of gate control, which can lead to device failure. Punch-through sets an upper bound on the drain-source voltage.
+ 
+<p align="center">
+  <img src="https://github.com/tusharc01/DVLSI/blob/main/Fabrication/punch-through.png" alt="punch-through" width="300"/>
+</p>
 
 *   **Body Effect:**   **
     *   The threshold voltage is also influenced by the **voltage difference between the source and the body (substrate) ($V_{SB}$)**. This is known as the **body effect** or substrate-bias effect.
