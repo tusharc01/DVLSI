@@ -5,6 +5,10 @@ Latch-up is an inherent problem in CMOS circuits, caused by parasitic bipolar tr
 
 The possibility of internal latch-up in VLSI circuits can be significantly reduced by following specific design rules, each aimed at addressing the parasitic elements that cause this phenomenon. 
 
+<p align="center">
+  <img src="https://github.com/tusharc01/DVLSI/blob/main/Fabrication/latch-up.png" alt="latch-up" width="500"/>
+</p>
+
 Here are the reasons for each rule to reduce internal latch-up:
 
 *   **Every well must have an appropriate substrate contact.**
