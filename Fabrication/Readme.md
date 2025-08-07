@@ -49,6 +49,10 @@ In short-channel devices, high electric fields and other physical phenomena sign
     *   For electrons in p-type silicon, the critical electric field for saturation is around 1.5 × 10$^6$ V/m, and the saturation velocity is approximately 10$^5$ m/s, a condition often met in modern short-channel devices.
     *   This effect causes the transistor to **enter saturation before the drain-source voltage ($V_{DS}$) reaches $V_{GS} - V_T$** (where $V_{GS}$ is gate-source voltage and $V_T$ is threshold voltage), leading to an **extended saturation region** in their current-voltage characteristics.
     *   Crucially, in short-channel devices, the **saturation current ($I_{DSAT}$) displays a linear dependence with respect to the gate-source voltage ($V_{GS}$)**, which is in contrast to the squared dependence seen in long-channel devices. This effectively **reduces the amount of current a transistor can deliver for a given control voltage**.
+ 
+<p align="center">
+  <img src="https://github.com/tusharc01/DVLSI/blob/main/Fabrication/velocity_saturation.png" alt="velocity_saturation" width="300"/>
+</p>
 
 *   **Mobility Degradation:**
     *   Beyond the lateral electric field from $V_{DS}$, a strong **normal (vertical) electric field** originating from the gate voltage also impacts carrier mobility.
