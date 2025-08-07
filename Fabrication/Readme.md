@@ -190,6 +190,10 @@ This multi-gate structure provides:
 * **Lower Operating Voltage:** The improved characteristics allow FinFETs to operate effectively at lower voltages, further reducing dynamic power consumption.
 * **Scalability:** FinFET technology has enabled the continued scaling of transistors to smaller process nodes (like 14nm, 10nm, 7nm, and 5nm) where planar transistors failed.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tusharc01/DVLSI/main/Fabrication/FinFET.png" alt="FinFET Fabrication" width="300"/>
+</p>
+
 ## Analogy
 
 Think of trying to turn off a water hose by squeezing it. If you can only press on one side (like a planar transistor), some water might still seep through if the pressure is high enough. But if you can wrap your hand around three sides of the hose (like a FinFET's gate around the fin), you can squeeze it much more effectively and stop the water flow completely.
