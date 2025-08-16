@@ -64,4 +64,117 @@ The video concludes by stating that subsequent lectures will delve into more det
 
 ---
 
+<p align="center">
+  <a href="https://youtu.be/ORtlxpW_LMU">
+    <img src="https://img.youtube.com/vi/ORtlxpW_LMU/0.jpg" alt="Watch the video" width="500"/>
+  </a>
+</p>
+
+The video continues the discussion on low power design, moving into **techniques to control or reduce power dissipation** by making design changes and modifications, and following specific design rules. These techniques can be applied at various levels, from the **device/transistor level** up to **higher design levels, such as the architecture or even behavioral level**, indicating that power considerations are not just for the final transistor-level circuit.
+
+The primary focus of these techniques is on **reducing dynamic power and static power**.
+
+### Techniques for Reducing Dynamic Power
+
+Dynamic power dissipation for a typical CMOS gate is given by the expression: **`alpha * C * V_DD^2 * F`**. To reduce dynamic power, strategies can include the reduction of any of these four parameters.
+
+1.  **Reduction of Activity Factor (alpha):**
+    *   **Alpha** represents how frequently the output is changing state, meaning it is charging or discharging.
+    *   **Clock Gating:** This is a technique where the **clock is sometimes stopped from coming into a circuit** when it's not required. The basic idea is that since the clock triggers activities in various parts of the circuit, if a part is not being used, switching off the clock entirely from that part will stop signal switching activity, thus reducing power consumption.
+        *   While effective for power reduction, it can make **testing more difficult** because if the clock altogether stops reaching a sub-circuit due to an error, testing that sub-circuit becomes impossible. It's a trade-off.
+        *   Implementing clock gating involves **additional hardware and control logic** to decide when a functional unit is not required and to generate the disable signal.
+        *   This additional hardware can introduce **additional delay or skew in the clock signal**. To mitigate this, one approach is to replace an existing buffer in the clock network with the OR gate used for gating, so the delay is balanced.
+    *   **Sleep Mode:** This is another technique that can be adopted to reduce the activity factor.
+
+2.  **Reduction of Load Capacitance (C):**
+    *   Dynamic power is proportional to `C`. Techniques to reduce load capacitance include using **small transistors, short wires, and smaller fan-outs**.
+
+3.  **Reduction of Supply Voltage (V_DD):**
+    *   Reducing the supply voltage is **very important** because dynamic power is proportional to the **square of `V_DD`**. However, reducing `V_DD` also **increases delay**, creating a trade-off.
+    *   **Static Approach:** This involves analyzing the circuit at the design level to find parts that are **not critical in terms of delay**. For these blocks, the **power supply can be reduced statically**, meaning the distribution of supply voltages is fixed beforehand among various functional blocks.
+        *   For example, in a circuit with multiple functional modules, some requiring fast operation and others tolerating slower speeds, **two different supply voltage rails (low and high)** can be used. Fast blocks are fed with high `V_DD`, and slower blocks with low `V_DD`.
+        *   This approach requires **additional power networks and more complex power routing**. Also, when driving signals between blocks operating at different voltages, **voltage level translation may be required** at the interfaces to avoid leakage current.
+        *   This can be implemented on a chip using **voltage islands**, where cells meant for high performance (e.g., orange rows) are powered by high `V_DD`, and lower performance cells (e.g., blue rows) by low `V_DD`. Even within the same row, different voltage islands can exist, though this complicates routing. Power grids can be designed vertically to align with these voltage islands.
+    *   **Dynamic Approach (Dynamic Voltage and Frequency Scaling - DVFS):** This involves **adjusting the operating voltage and frequency dynamically** to match performance requirements.
+        *   Modern processors often have **several power modes** (e.g., high performance mode with higher `V_DD` and frequency, or power saving mode with lower `V_DD` and frequency). This provides flexibility based on user needs or program demands.
+        *   However, switching between modes can take **several milliseconds**, so transitions should not be carried out very frequently. Additional logic is also needed for implementation.
+        *   The underlying idea is to **always run at the lowest supply voltage that meets the timing constraint**.
+        *   **Dynamic Frequency Scaling (DFS)** alone saves power (by reducing average power over a longer period) but **does not change the total energy consumed** for a computation, as the number of transitions remains the same.
+        *   **Dynamic Voltage Scaling (DVS) combined with DFS** is more effective because **voltage scaling directly reduces the magnitude of current drawn, thereby saving energy**.
+        *   A typical DVFS system requires a **programmable clock generator** (often based on a Phase-Locked Loop, PLL) that can set clock frequency over a wide range with fine increments (e.g., 200-700 MHz in 33 MHz increments). It also needs a **programmable power supply network** to set `V_DD` across a range with many levels (e.g., 1.12-1.6 volts in 32 levels). Processor instructions and the operating system can be delegated the responsibility to set these voltage and clock levels based on task completion deadlines or system load. If the system load is heavy, the OS can increase `V_DD` first, then frequency, to run faster. If the load is light, it can reduce clock frequency, then `V_DD`.
+
+4.  **Reduction of Frequency (F):**
+    *   Frequency can be reduced to the extent possible without sacrificing performance beyond acceptable levels, potentially using a **power down mode** in the circuit.
+
+### Techniques for Reducing Static Power
+
+Static power is consumed even when no signal transitions are occurring, primarily due to **leakage effects** in transistors.
+
+1.  **Ratioed Circuits:** In conventional CMOS circuits with pull-up and pull-down networks (unlike dynamic CMOS), having several gates in series can reduce the chance of simultaneous conduction, thereby reducing switching currents (though the primary focus of static power is leakage).
+
+2.  **Leakage Reduction Techniques:**
+    *   **Transistor Stacking:** This technique involves connecting **multiple transistors in series**. When transistors are stacked, the overall resistance of the series path increases, which significantly **reduces the total leakage current** flowing through the "off" transistors.
+    *   **Dual Threshold Partitioning / Selectively Using Low Threshold Devices:** The threshold voltage (`Vth`) of transistors can be changed during fabrication.
+        *   **Low threshold voltage transistors run faster but incur more leakage current**.
+        *   **High threshold voltage transistors are slower but have less leakage current**.
+        *   The approach involves classifying transistors in the circuit netlist into low threshold (for critical path elements requiring high speed) and high threshold (for non-critical path elements) to **balance speed and overall power consumption**.
+    *   **Variable Thresholds / Body Bias:** This is a more generalized approach where the threshold voltage can be adjusted to many levels, not just two. This is achieved by **changing the substrate bias voltage** of a transistor. Reducing `Vth` makes transistors faster but increases leakage rapidly. This flexibility allows adjusting transistor speed and leakage during runtime via programming, but it requires a **triple-well fabrication process**, which increases cost.
+    *   **Reduce Temperature Operation:** This is another general method mentioned for reducing leakage.
+
+3.  **Power Gating Using Sleep Transistors:**
+    *   The idea is to introduce **auxiliary power supply voltages (e.g., `V_DDV`, `V_SSV` at lower levels)** in addition to the main `V_DD` and `V_SS`.
+    *   **"Sleep transistors"** (activated by a sleep signal `SL`) are placed between the main power rails and the circuit block.
+    *   When a circuit is not needed, it can be put into a **"sleep mode" or "power down mode"** by activating these transistors, which either **completely turns off or significantly reduces the voltage** to the circuit.
+    *   For storage elements like flip-flops, instead of completely switching off `V_DD` (which would lose data), the voltage is just reduced to retain data, and it can be "jacked up" again when needed.
+    *   This technique can be implemented at the chip level by embedding power switches in standard cells.
+    *   When used properly, this method has been demonstrated to **reduce power by as much as a thousand times**, making it a very effective design philosophy for power control, though it requires detailed circuit analysis.
+
+The video concludes by stating that further techniques for power reduction will be discussed in subsequent lectures.
+
+---
+
+<p align="center">
+  <a href="https://youtu.be/_A7fUR2Itsc">
+    <img src="https://img.youtube.com/vi/_A7fUR2Itsc/0.jpg" alt="Watch the video" width="500"/>
+  </a>
+</p>
+
+This video focuses on **techniques to reduce power consumption at the gate level**. The speaker emphasizes that these methods can be "quite easily integrated as part of the synthesis tools". A very important design principle is to **"incorporate power aware design philosophy from the very beginning,"** not waiting until the end of the design process.
+
+When recalling power consumption in a CMOS network, the speaker refines the average power dissipation expression: **`alpha * C * V_DD^2 * F`**.
+*   **Load Capacitance (C)**: This includes not only the load capacitance from driving other gates but also "the parasitic capacitance of the interconnects" and "the drain capacitance of the local transistors".
+*   **Internal Capacitance (C_internal)**: It's important to consider that "all the other internal nodes of this gate" also have internal capacitance that charges and discharges, not just the output node. This makes the power calculation "more accurate".
+*   **Activity Factor (alpha)**: This represents the "signal activity" or "transition" at a node.
+
+At the gate level, the primary focus is on **dynamic power consumption**, which occurs "whenever the gate output is switching state zero to one one to zero". To estimate signal activity, an objective function is introduced: **`sum(C_i * p_i * (1-p_i))`**, which you "want to minimize" to reduce dynamic power.
+*   **`p_i`** denotes the "probability that the logic value of a node is at logic one".
+*   **`1 - p_i`** is the probability that the node is at logic zero.
+*   The product **`p_i * (1 - p_i)`** represents the "probability that there is a transition" at that node, also known as the activity factor `alpha_i`.
+*   For "totally random data," where `p_i` is 0.5, `alpha_i` will be 0.25, but in "real circuits data will not be totally random," so `alpha_i` will typically be much less.
+
+The video then delves into several techniques:
+
+1.  **Technology Mapping Approach**:
+    *   **Technology mapping** is the process where, given a design specification, a netlist of cells is generated using "standard cells" from a predefined library.
+    *   The objective here is to **"minimize the total switching activity"** during this mapping process.
+    *   The speaker illustrates with a 4-input AND gate where the inputs (a, b, c, d) have different signal probabilities (e.g., a=0.2, b=0.2, c=0.5, d=0.5).
+    *   By calculating the `p_i` and `alpha_i` values for internal nodes in different technology mappings (e.g., a 3-level AND vs. a 2-level AND decomposition), it's shown that one mapping can result in a "much larger" total signal activity (e.g., 0.23 vs. 0.0679), making it "a very bad technology mapping" from a power dissipation standpoint.
+    *   This introduces an "additional parameter during technology mapping" to consider power alongside delay, creating a "tradeoff that you will have to decide".
+
+2.  **Phase Assignment**:
+    *   This technique involves **moving gates across functional blocks to reduce the activity**.
+    *   The speaker provides an example of a circuit computing `a_bar * b`, where `a` is a high-activity node. By modifying the AND gate into a NOR gate and changing `b` to `b_bar`, the output function remains the same, but the number of "high activity" nodes can be reduced from two to one, thereby reducing power consumption.
+    *   Another example involves a multiplexer where an inverter on a high-activity input `a` is moved to input `b` and also an inverter is added to the output. Functionally, the multiplexer remains the same, but the number of "high activity nodes" is reduced.
+    *   This technique uses **"Boolean algebra rules to change the functional wave"** and "restructuring gates" to reduce `alpha_i` values.
+
+3.  **Pin Swapping**:
+    *   This is an "interesting thing" where the **"impact of the switching activity of a gate input with respect to power dissipation depends on the relative position of the input"** in a multi-input gate.
+    *   Although gates like NAND are functionally commutative (e.g., `abcd` vs. `dcba`), "in CMOS this does not always happen" regarding power dissipation.
+    *   The design philosophy is to "put the **higher activity nodes to the inputs whose impact on power dissipation is the least**".
+    *   Using a 4-input NAND gate example, where `d` has maximum activity and `a` has lowest activity, the observation is that placing the "least active input... at the top" of the transistor stack (e.g., `a b c d` where `a` is at the top) is better. This is because even if lower transistors switch heavily, the "charging discharging impact will be the least" if the topmost transistor (controlled by the least active input) is "mostly non conducting".
+
+The video concludes by stating that "more techniques at the level of gates" for power control will be discussed in the next lecture.
+
+---
+
 
