@@ -1,4 +1,8 @@
-https://youtu.be/TFOO1JAll2Y
+<p align="center">
+  <a href="https://youtu.be/TFOO1JAll2Y">
+    <img src="https://img.youtube.com/vi/TFOO1JAll2Y/0.jpg" alt="Watch the video: Low Power VLSI Design" width="500"/>
+  </a>
+</p>
 
 The video discusses the critical importance of **low power design** in modern VLSI (Very Large Scale Integration) chips, especially in today's scenario where it significantly impacts how chips are designed, including the physical design process.
 
