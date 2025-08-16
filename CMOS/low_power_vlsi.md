@@ -56,6 +56,10 @@ Power dissipation in CMOS circuits is broadly classified into three main types:
     *   **Importance:** As transistors shrink and billions are packed into a chip, the total contribution of static power dissipation has become increasingly significant, even though each individual transistor consumes only a small amount.
     *   While static power cannot be entirely avoided, it can be reduced through specific design manipulations.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tusharc01/DVLSI/main/CMOS/static_power.png" alt="Static Power Illustration" width="400"/>
+</p>
+
 The video concludes by stating that subsequent lectures will delve into more details about controlling power dissipation using various design techniques.
 
 ---
