@@ -178,9 +178,62 @@ The video concludes by stating that "more techniques at the level of gates" for 
 ---
 
 <p align="center">
-  <a href="https://youtu.be/ORtlxpW_LMU">
-    <img src="https://img.youtube.com/vi/ORtlxpW_LMU/0.jpg" alt="Watch the video" width="500"/>
+  <a href="https://youtu.be/tS536xrS3vE">
+    <img src="https://img.youtube.com/vi/tS536xrS3vE/0.jpg" alt="Watch the video" width="500"/>
   </a>
 </p>
+
+In this lecture, the speaker continues the discussion on **techniques for low power at the level of gates or functional blocks (RTL level)**.
+
+The first method discussed concerns **glitch**.
+*   **Glitches, also known as hazards**, are defined as "unwanted signal transitions because of the delays in the gates" or "spurious transitions that means transitions which are functionally not expected to happen in the output due to unbalanced path delays".
+*   If a circuit has glitches, it means the "output node is changing unnecessarily a few times," which leads to "charging and discharging of the capacitor is taking place unnecessarily" and thus "extra power consumption".
+*   The speaker notes that **dynamic CMOS logic does not produce any glitches** because of its "pre charge and compute state" operation, meaning "this kind of glitches will not happen there" and "they will have zero glitching power".
+*   An example of a two-level NAND circuit demonstrates a **static hazard**, where an output that is "supposed to remain at one" temporarily goes down and then up due to "delay in balance," leading to "one discharging and one one charging".
+*   The "rule of thumb" is that a "chain kind of a structure and many gates in cascade" is "not a good structure with respect to glitches" and is "bound to be several such glitches here". In contrast, if you implement the same circuit as a **"balanced tree structure this will be having fewer glitches"**.
+
+Next, the concept of **pre-computation** is introduced.
+*   The motivation is that the "total time you take to generate the output can be unequal" depending on the functional block.
+*   The core idea is that "if some of the common cases can be detected early by using some special circuits then the output of that circuit can disable the main functional block from participating in the calculation". This helps to disable "unnecessary transitions".
+*   This involves adding "pre computation logic to disable or un select some of the paths which can help in reducing power dissipation".
+*   A typical use case involves looking for "specific input patterns," and "if some patterns are found we can disable loading of these registers so that new values will not be loaded thereby transitions in the combinational logic will be avoided". This is "like a clock gating" that avoids "dynamic power consumption".
+*   The speaker illustrates this with a **comparator example**:
+    *   For two N-bit numbers, `A` and `B`, the **most significant bits (MSBs)** are compared first using an exclusive NOR (XNOR) gate.
+    *   "If the two most significant bits are different then there is no need to look at the other bits". In this case, the one-bit comparator's result is sent directly to the output "without involving this n minus one bit comparator".
+    *   Crucially, "when this bits are not equal we are not loading any new value into these two resistors... thereby we are stopping any kind of transitions from happening in this part of the combinational circuit so we can reduce the power consumption quite significantly".
+
+The video then revisits **clock gating**.
+*   This technique "selectively stop the clock from reaching some of the flip flops or registers so that unnecessary transitions are avoided".
+*   While it can pose issues for testability and race conditions, "from low power design point of view this is quite effective".
+*   The justification is that "in a typical chip the clock network is the one major source of power dissipation because every node of the clock network makes two transitions in every clock period in every cycle," meaning "every node has the highest values of alpha activity". Therefore, "targeting the clock network is very justified".
+*   An example of a shift register where a flip-flop's output feeds the next flip-flop's clock input is shown to be problematic for "testability considerations designs for testing". The solution involves adding "additional multiplexers" and feeding the clock to all inputs, controlled by an "extra additional control pin," enabling or disabling the clock as needed.
+
+A **low power flip-flop** structure is then detailed.
+*   Normally, a flip-flop activates on every clock edge, leading to "some power consumption inside".
+*   The low-power version makes an observation: "if my applied d value and my current output value are same... then even if i store it the output value will not change".
+*   Therefore, "if they are same i am disabling the clock because i need not apply the clock because the next state will also be the same".
+*   This is implemented by feeding the D input and Q output to an **XOR gate**. When `D` and `Q` are the same (00 or 11), the XOR output is 0, which "disables the clock" via an AND gate.
+*   "So here the clock will be coming to the flip flop only for those instances where the applied d value and the output q stored value are different". The "overhead is two additional gates one x o r and one and gate are required".
+
+The **input gating technique** is discussed next.
+*   This technique is "quite simple and commonly used" and involves disabling "some of the inputs that means we prevent them from changing".
+*   An example is given with multiple functional blocks (adder, subtractor, multiplier) whose outputs are fed to a multiplexer.
+*   The problem is that even if only one block (e.g., adder) is selected, the "f two and f three are also participating in the calculation" because "a and b are changing," leading to "unnecessarily signal changes going on inside" them and consuming power.
+*   The solution: "if i know from select that i am going to select f one so why dont disable the inputs of f two and f three in some way so that signal transitions here and here does not occur".
+*   This can be done using "buffers or tri state buffers" at the inputs. When a block is not needed, its inputs are disabled, meaning "no signal transitions occurring here which means no transitions will be occurring inside this". This prevents "useless transition" and "additional power" consumption.
+
+Finally, a **reduced power shift register** is explained.
+*   A normal shift register is a "chain of d flip flops connected in cascade".
+*   The low-power principle involves "splitting the shift register into two parts".
+*   This means separating the "odd number cells in one shift register and the even number cells in the other shift register".
+*   Inputs are applied alternately to the two shift registers (e.g., D1 to one, D2 to the other).
+*   Crucially, these two shift registers are clocked "at half the clock frequency" (f/2) compared to the original frequency (f).
+*   A final multiplexer combines the outputs alternately from the two shift registers to "generate the output at the frequency of f".
+*   This technique exploits the principle that **"power dissipation is directly proportional to the frequency"**. It allows keeping the "speed of the shift register at this same level but to reduce the power consumption quite significantly".
+
+The speaker concludes by noting that "these kind of adhoc techniques you can imply in various blocks of your design" to reduce power consumption.
+
+---
+
 
 
