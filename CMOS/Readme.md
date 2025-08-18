@@ -1,6 +1,6 @@
 
 
-[1](https://www.youtube.com/watch?v=x7eSakP9YFU&list=PL0-xus8sJBCSm5N5AnivBiIVbGyrDEIIK&index=24&pp=iAQB) Noise margins are a critical concept in digital circuit design, particularly for CMOS inverters, as they quantify the permissible noise levels an input signal can have while still ensuring the output is correctly interpreted.
+[[1]](https://www.youtube.com/watch?v=x7eSakP9YFU&list=PL0-xus8sJBCSm5N5AnivBiIVbGyrDEIIK&index=24&pp=iAQB) Noise margins are a critical concept in digital circuit design, particularly for CMOS inverters, as they quantify the permissible noise levels an input signal can have while still ensuring the output is correctly interpreted.
 
 Here's an explanation of noise margins in CMOS inverters:
 
