@@ -100,7 +100,7 @@ The Short Channel Effect impacts everything, including current, speed, and thres
 
 ---
 
-T fundamental electrical challenges associated with **Short Channel Effects (SCEs)** in deeply scaled CMOS transistors, which became critical during the transition from the 500 nanometer (nm) down to the 130 nm process node.
+The fundamental electrical challenges associated with **Short Channel Effects (SCEs)** in deeply scaled CMOS transistors, which became critical during the transition from the 500 nanometer (nm) down to the 130 nm process node.
 
 SCEs cause significant degradation in transistor performance, leading to a decrease in the overall **on-current ($I_{on}$)**, an increase in the problematic **off-current ($I_{off}$)**, and a drop in the **threshold voltage ($V_T$)**.
 
