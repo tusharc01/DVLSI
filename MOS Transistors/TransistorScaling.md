@@ -179,7 +179,7 @@ SSRW refers to adjusting the vertical doping concentration within the well.
     1.  **Lower Concentration at the Top:** The region where the channel eventually forms has a lower concentration of impurities. This is critical because **higher doping reduces carrier mobility** (due to electrons hitting each other—scattering effect), slowing down the current flow.
     2.  **Higher Concentration Deeper Down:** The bulk area below the channel region has a higher concentration. This higher concentration helps ensure the area maintains a high resistance and a strong reverse bias.
 
-                                                v  ∝ u ∝ 1/conc. of doping
+                                                v ∝ u ∝ 1/conc. of doping
 
 #### B. Halo Implants
 
