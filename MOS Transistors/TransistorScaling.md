@@ -52,7 +52,7 @@ This difference arose due to the increasing problems associated with the smalles
 
 ---
 
-**130 nanometer (nm) process node** and the significant challenges posed by **Short Channel Effects (SCEs)**
+Now, **130 nanometer (nm) process node** and the significant challenges posed by **Short Channel Effects (SCEs)**
 
 The period spanning from the 500 nm node down to the 130 nm node was marked by engineers continually fighting the issues associated with short channels, which required "doing some additional thing[s]" beyond simply reducing the length and oxide thickness.
 
