@@ -190,3 +190,64 @@ Halo implants are used to strengthen the barrier against the drain's electric fi
 *   **Impact:** Higher doping concentrations create a stronger, **smaller (tighter) depletion region depth** for the reverse-biased junction. This tighter junction acts as a barrier, limiting the drain's ability to drag electrons and lower the threshold voltage (DIBL effect).
 
 These techniques were essential for maintaining the scaling trend and addressing the physical limitations imposed by extremely short channel lengths.
+
+---
+
+The advancement of CMOS scaling into the **90 nanometer (nm)** and **65 nm** process nodes (starting around the 2003 timeframe), focusing specifically on the necessity and implementation of **Strain Engineering** to overcome physical limitations and maintain the continuous improvement defined by Moore's Law.
+
+This era required "something additional" beyond the earlier solutions (like retrograde wells and halo implants) because carrier mobility was dropping significantly as the channel length was reduced.
+
+Here is an explanation of the innovations and challenges of these process nodes:
+
+### 1. The Need for Strain Engineering
+
+Intel's goal for every new process node was a **30% reduction in delay** (speed improvement), a **30% reduction in size/dimensions** (area reduction of 50%), and an overall decrease in power.
+
+As the minimum channel length was further decreased from 70 nm (130 nm node) to **45 nm** (90 nm node), the **mobility of electrons or holes** (how easily carriers move) dropped significantly due to high electric fields and increased scattering effects. Since current, delay, and frequency are directly linked to mobility, maintaining or increasing mobility became paramount for achieving the necessary speed gains.
+
+The existing techniques, such as **retrograde wells** (used to increase carrier mobility by maintaining a low concentration of impurities at the top of the channel) and additional doping near the junction, were no longer sufficient to offset the losses.
+
+### 2. Strain Engineering at 90 nm
+
+At the 90 nm process node, Intel introduced a critical new technique called **strain engineering** or creating **stress** in the channel. This approach required different solutions for N-MOS and P-MOS transistors, which utilize different major carriers (electrons and holes, respectively).
+
+| Transistor Type | Major Carrier | Material/Method | Effect on Silicon Lattice | Result |
+| :--- | :--- | :--- | :--- | :--- |
+| **P-MOS** | Holes | **Silicon Germanium (SiGe)** added to the source and drain. | Compresses the silicon atoms in the channel. | Greatly **improves hole mobility**. |
+| **N-MOS** | Electrons | **High-stress Silicon Nitride film** applied on top of the device. | Creates **tensile action** (expansion or relaxation) in the channel. | **Increases electron mobility**. |
+
+The net result of strain engineering is that increased mobility leads to increased velocity, which increases current, decreases delay, and allows the circuit to run at a much higher frequency.
+
+### 3. Scaling Metrics and the Oxide Thickness Crisis
+
+Scaling involved reducing every critical dimension (CD) and also the **contacted gate pitch**—the distance between contacts over the source, drain, and gate—to ensure overall transistor density increased.
+
+The following table summarizes the dimensional changes for these process nodes:
+
+| Intel Process Node | Smallest Gate Length (nm) | Oxide Thickness ($T_{ox}$) (nm) | Number of Metal Layers |
+| :--- | :--- | :--- | :--- |
+| **130 nm** | 70 | 1.5 | 6 |
+| **90 nm** | 45 | 1.2 | 7 |
+| **65 nm** | 35 | 1.2 | 8 |
+
+#### The Physical Limit of Oxide Scaling (65 nm)
+
+At the **65 nm** process node, the scaling of the dielectric (oxide thickness) reached a critical physical limitation.
+
+*   The $T_{ox}$ was reduced to **1.2 nm** at 90 nm.
+*   At 65 nm, the oxide thickness **could not be scaled further** and remained at 1.2 nm.
+*   This thickness of 1.2 nm is equal to only about **five layers of atoms**. Further reduction risks the oxide ceasing to be a perfect insulator, allowing electrons to **tunnel** through and flow to the gate.
+
+To compensate for the lack of oxide scaling (which typically increases gate control and reduces delay), engineers had to rely heavily on other methods to maintain performance targets.
+
+### 4. Compensation at 65 nm
+
+Since the oxide thickness could not be decreased, all performance increases at 65 nm had to be achieved through other techniques:
+
+1.  **Second Generation Strain:** A **second generation of strain engineering** was implemented, achieving a considerable improvement in the level of straining compared to the 90 nm process.
+2.  **Junction Refinement:** There was further improvement in traditional techniques, including creating **extra shallow Source/Drain junctions**. This refinement helps create a strong barrier for the electric field coming from the drain side, reducing its influence on the channel.
+3.  **Retrograde Wells:** Further improvement was made in **retrograde wells**.
+
+As a combination of these factors, the target of a **30% improvement in delay** was still achieved at the 65 nm node.
+
+In addition to device scaling, the interconnect structure also evolved, with the number of metal layers increasing from 6 layers (130 nm) to 7 layers (90 nm) and 8 layers (65 nm). This interconnect scaling focused on reducing the resistance and capacitance of the metal layers to improve delay and reliability.
