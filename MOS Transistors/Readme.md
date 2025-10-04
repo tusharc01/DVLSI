@@ -63,3 +63,11 @@ Once $V_{DS}$ exceeds $V_{DSET}$, the device enters saturation.
 3.  **Constant Current:** Although the channel pinches off, it is not a block. The high potential difference created by the increased $V_{DS}$ results in a **very strong electric drift force** that drags electrons across the pinched-off region quickly. This mechanism keeps the current constant, resulting in the steady-state current characteristic of the saturation region.
 
 This understanding of $V_{DSET}$ is particularly important for **analog IC designers** who often operate transistors in the saturation region, while **digital IC designers** tend to operate transistors in the linear region.
+
+---
+
+In digital design, transistors are intended to work in the **linear region** for the following key reasons, which relate to their steady-state operation and desired function:
+
+1.  **Steady-State Operation (Settling $V_{DS}$):** In the steady state of a digital circuit (like a CMOS inverter), when the transistor (NMOS) is "on" (meaning the gate-to-source voltage, $V_{GS}$, is high, e.g., $1.8$ V), the drain voltage ($V_D$) quickly settles to $0$ V (ground) because the output node is pulled low. When the transistor is strongly "on" ($V_{GS}$ is high, greater than $V_{TH}$) but the drain-to-source voltage ($V_{DS}$) is zero or very low, the transistor operates in the **linear region**.
+
+2.  **No Amplification or Gain Desired:** Digital circuits deal strictly with binary states (zero and one, such as $0$ V and $1.8$ V). Digital designers want the transistor to stay in the linear region because they **do not want the transistor to become an amplifier or provide a gain**. They specifically **don't want any amplification**. Their goal is simply for the input voltage transition (e.g., $0$ V to $1.8$ V) to make the output transition and settle between $0$ V and $1.8$ V, without providing gain or having a large, fluctuating current based on the input.
