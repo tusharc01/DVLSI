@@ -15,7 +15,7 @@ The threshold voltage is the initial opposing force or barrier that $V_{GS}$ mus
 
 ### II. Determining $V_{DSET}$
 
-The primary clarification of the video is that $\mathbf{V_{DSET}}$ is not a fixed voltage but changes for each curve plotted at a different fixed $V_{GS}$. As $V_{GS}$ increases, the point where saturation starts (the $V_{DSET}$ value) occurs earlier.
+The primary clarification is that $\mathbf{V_{DSET}}$ is not a fixed voltage but changes for each curve plotted at a different fixed $V_{GS}$. As $V_{GS}$ increases, the point where saturation starts (the $V_{DSET}$ value) occurs earlier.
 
 **The Opposing Forces and Overdrive:**
 The relationship that defines $V_{DSET}$ involves the balance between $V_{GS}$, $V_{TH}$, and the voltage drop caused by $V_{DS}$.
