@@ -35,6 +35,11 @@ $$\mathbf{V_{DSET} = V_{GS} - V_{TH}}$$
 *   If $V_{GS} = 1.0$ V and $V_{TH} = 0.6$ V, the $V_{DSET}$ is $0.4$ V.
 *   If $V_{GS}$ is lower, such as $0.8$ V (with fixed $V_{TH}=0.6$ V), the $V_{DSET}$ is $0.2$ V, meaning saturation starts earlier.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tusharc01/DVLSI/main/MOS%20Transistors/img/output.png" alt="MOS Output" style="width:300px;"/>
+</p>
+
+
 ### III. The Saturation Mechanism (Pinch-Off)
 
 Once $V_{DS}$ exceeds $V_{DSET}$, the device enters saturation.
