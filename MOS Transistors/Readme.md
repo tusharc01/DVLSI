@@ -1,3 +1,8 @@
+> **Playlist Reference:**  
+> [CMOS Fundamentals:](https://youtube.com/playlist?list=PL0-xus8sJBCSm5N5AnivBiIVbGyrDEIIK)
+
+
+
 The crucial concept of **$V_{DSET}$**, which is the specific drain-to-source voltage at which an N-MOS transistor transitions from the linear region into the saturation region, emphasizing that this value is a function of the gate-to-source voltage ($V_{GS}$).
 
 The discussion focuses on the N-MOS transistor and its output characteristics ($I_{DS}$ versus $V_{DS}$).
